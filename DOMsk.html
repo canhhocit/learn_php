@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM sk anh</title>
+</head>
+<body>
+    <div>
+    <img id="slider" src="https://raw.githubusercontent.com/ichte/Planets-Android-Learning/master/earth.jpg" alt="anh the gioi">
+    <br>    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <button onclick="prev()"> Ảnh trước </button>
+    <button onclick="next()"> Ảnh sau </button>
+</div>
+</body>
+<script>
+    var images = [
+        "https://raw.githubusercontent.com/ichte/Planets-Android-Learning/master/earth.jpg",
+        "https://raw.githubusercontent.com/ichte/Planets-Android-Learning/master/jupiter.jpg",
+        "https://raw.githubusercontent.com/ichte/Planets-Android-Learning/master/neptune.jpg"
+    ];
+    var num = 0;
+
+    function next() {
+        let slider = document.getElementById("slider");
+        
+        num++;
+        if(num >= images.length) {
+            num = 0;
+        }
+        slider.src = images[num];
+       
+    }
+
+    function prev() {
+        let slider = document.getElementById("slider");
+         let unslider = document.getElementById("unslider");
+        num--;
+        if(num < 0) {
+            num = images.length-1;
+        }
+        slider.src = images[num];
+      
+    }
+</script>
+</html>
