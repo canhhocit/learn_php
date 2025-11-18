@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --accent: #0ea5e9;
+        --muted: #6b7280;
+        --danger: #dc2626;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        background: var(--bg);
+        color: #0f172a;
+        padding: 24px;
+      }
+      .wrap {
+        max-width: 420px;
+        margin: 36px auto;
+      }
+      .card {
+        background: var(--card);
+        border-radius: 12px;
+        padding: 22px;
+        box-shadow: 0 6px 20px rgba(2, 6, 23, 0.08);
+        border: 1px solid rgba(2, 6, 23, 0.04);
+      }
+      h2 {
+        margin: 0 0 6px;
+        font-size: 20px;
+      }
+      p.lead {
+        margin: 0 0 14px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        margin-top: 12px;
+        font-size: 13px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px 12px;
+        margin-top: 8px;
+        border-radius: 8px;
+        border: 1px solid #e6e9ef;
+        background: #fbfdff;
+        font-size: 14px;
+      }
+      input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 8px 24px rgba(14, 165, 233, 0.08);
+      }
+
+      .row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 12px;
+      }
+      .show-pass {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .error {
+        color: var(--danger);
+        font-size: 13px;
+        margin-top: 6px;
+        display: none;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .btn {
+        background: #4f6047;
+        color: #fff;
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .btn.register {
+        background: #858d7b9f;
+        color: #34382ff4;
+        border: 1px solid rgba(14, 165, 233, 0.14);
+      }
+
+      .note {
+        margin-top: 12px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 460px) {
+        .wrap {
+          padding: 0 8px;
+        }
+        .card {
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h2>Đăng nhập</h2>
+        <p class="lead">Nhập tên đăng nhập và mật khẩu của bạn.</p>
+
+        <form id="loginForm" action="#" method="post" novalidate>
+          <label for="username">Tên đăng nhập</label>
+          <input type="text" id="username" name="username" placeholder="NguyenVanA" autocomplete="username" />
+          <div id="err_user" class="error">Vui lòng nhập tên đăng nhập</div>
+
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" />
+          <div id="err_pass" class="error">Vui lòng nhập mật khẩu</div>
+
+          <div class="row">
+            <label class="show-pass">
+              <input type="checkbox" id="ckbPass" />
+              Hiện mật khẩu
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="submit">Đăng nhập</button>
+            <button type="button" class="btn register" onclick="location.href='loginform.html'">Đăng ký</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        // tham chieu id 
+        const form = document.getElementById("loginForm");
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+        const errUser = document.getElementById("err_user");
+        const errPass = document.getElementById("err_pass");
+        const toggle = document.getElementById("ckbPass");
+
+        // on/off pass
+        toggle.addEventListener("change", function () {
+          if (toggle.checked) password.type = "text";
+          else password.type = "password";
+        });
+
+        // show err
+        function showError(el, message) {
+          el.textContent = message;
+          el.style.display = message ? "block" : "none";
+        }
+
+        // check 
+        form.addEventListener("submit", function (e) {
+    
+          showError(errUser, "");
+          showError(errPass, "");
+
+          let hople = true;
+          if (!username.value.trim()) {
+            showError(errUser, "Vui lòng nhập tên đăng nhập");
+            hople = false;
+          }
+          if (!password.value) {
+            showError(errPass, "Vui lòng nhập mật khẩu");
+            hople = false;
+          }
+
+          if (!hople) {
+            // Ngăn form gửi đi
+            e.preventDefault();
+            if (errUser.style.display === "block") username.focus();
+            else if (errPass.style.display === "block") password.focus();
+            return;
+          }
+
+          // Nếu hợp lệ, ở đây thông thường form sẽ được gửi lên server
+          // Trong ví dụ này ta ngăn gửi để hiển thị thông báo demo
+          e.preventDefault();
+          alert("Đăng nhập thành công ");
+        });
+      })();
+    </script>
+  </body>
+</html>
