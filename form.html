@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>form</title>
   </head>
+  <style>
+    body.dark {
+      background: rgb(152, 149, 149);
+    }
+  </style>
   <body>
-    <form action="https://httpbin.org/anything" method="get">
+    <form action="" method="post">
       <label for="name">Tên đăng nhập:</label>
       <br />
       <input id="name" name="name" type="text" value="" />
@@ -18,6 +23,9 @@
       <br />
 
       <input type="submit" name="submit" value="Đăng Nhập" />
+      <br />
+      <label for="ckb">Transfer bg</label>
+      <input type="checkbox" id="ckb" onclick="document.body.classList.toggle('dark')" />
     </form>
   </body>
 </html>

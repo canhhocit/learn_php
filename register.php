@@ -1,3 +1,65 @@
+<?php
+require "config.php";
+
+$errors = [];
+$values = [
+    "fullname" => "",
+    "email" => "",
+    "username" => "",
+    "phone" => "",
+    "gender" => "",
+    "country" => "",
+    "terms" => false,
+];
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    foreach ($values as $key => $default) {
+        if ($key === "terms") {
+            $values[$key] = isset($_POST[$key]);
+        } else {
+            $values[$key] = trim($_POST[$key] ?? "");
+        }
+    }
+
+    $password = $_POST["password"] ?? "";
+    $confirm = $_POST["confirm_password"] ?? "";
+
+    if ($values["fullname"] === "") $errors[] = "Vui lòng nhập họ tên.";
+    if (!filter_var($values["email"], FILTER_VALIDATE_EMAIL)) $errors[] = "Email không hợp lệ.";
+    if ($values["username"] === "") $errors[] = "Vui lòng nhập tên đăng nhập.";
+    if (strlen($password) < 6) $errors[] = "Mật khẩu tối thiểu 6 ký tự.";
+    if ($password !== $confirm) $errors[] = "Mật khẩu xác nhận không khớp.";
+    if (!$values["terms"]) $errors[] = "Bạn phải đồng ý với điều khoản.";
+
+    if (!$errors) {
+        $stmt = $conn->prepare(
+            "INSERT INTO users(fullname,email,username,password_hash,phone,gender,country) VALUES (?,?,?,?,?,?,?)"
+          );
+          $hash = password_hash($password, PASSWORD_DEFAULT);
+        $phone = $values["phone"] ?: null;
+        $gender = $values["gender"] ?: null;
+        $country = $values["country"] ?: null;
+        $stmt->bind_param("sssssss", $values["fullname"], $values["email"], $values["username"], $hash, $phone, $gender, $country);
+
+        if ($stmt->execute()) {
+            header("Location: login.php?registered=1");
+            exit;
+        }
+
+        if ($stmt->errno === 1062) {
+            if (str_contains($stmt->error, "email")) {
+                $errors[] = "Email đã tồn tại.";
+            } elseif (str_contains($stmt->error, "username")) {
+                $errors[] = "Tên đăng nhập đã có người sử dụng.";
+            } else {
+                $errors[] = "Thông tin đã tồn tại.";
+            }
+        } else {
+            $errors[] = "Có lỗi xảy ra, vui lòng thử lại.";
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -106,7 +168,7 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background:#578038 ;
+        background: #578038;
         color: #fff;
         padding: 10px 14px;
         border-radius: 10px;
@@ -114,23 +176,24 @@
         cursor: pointer;
         font-weight: 600;
       }
-      .btn.secondary {
-        background: transparent;
-        color: var(--accent);
-        border: 1px solid rgba(37, 99, 235, 0.12);
+      .error-list {
+        background: #fee2e2;
+        color: #b91c1c;
+        border: 1px solid #fecaca;
+        padding: 10px 14px;
+        border-radius: 8px;
+        margin: 12px 0 4px;
+        font-size: 14px;
       }
-
-      .error {
-        color: #dc2626;
-        font-size: 13px;
-        margin-top: 6px;
-        display: none;
+      .success {
+        background: #dcfce7;
+        color: #15803d;
+        border: 1px solid #bbf7d0;
+        padding: 10px 14px;
+        border-radius: 8px;
+        margin-top: 12px;
+        font-size: 14px;
       }
-      .field-error {
-        border-color: #dc2626 !important;
-        box-shadow: 0 6px 18px rgba(220, 38, 38, 0.06) !important;
-      }
-
       @media (max-width: 520px) {
         .container {
           margin: 16px;
@@ -154,46 +217,52 @@
         </div>
       </div>
 
+      <?php if ($errors): ?>
+      <div class="error-list">
+        <?php foreach ($errors as $error): ?>
+        <div><?php echo htmlspecialchars($error); ?></div>
+        <?php endforeach; ?>
+      </div>
+      <?php endif; ?>
+
       <form id="regForm" action="" method="post" novalidate>
         <label for="fullname">Họ và tên</label>
-        <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên" required />
-        <div id="err_fullname" class="error"></div>
+        <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên" required value="<?php echo htmlspecialchars($values["fullname"]); ?>" />
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required />
-        <div id="err_email" class="error"></div>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required value="<?php echo htmlspecialchars($values["email"]); ?>" />
+
+        <label for="username">Tên đăng nhập</label>
+        <input type="text" id="username" name="username" placeholder="Ví dụ: nguyenvana" required value="<?php echo htmlspecialchars($values["username"]); ?>" />
 
         <div class="row">
           <div class="col">
             <label for="password">Mật khẩu</label>
             <input type="password" id="password" name="password" placeholder="Tối thiểu 6 ký tự" minlength="6" required />
-            <div id="err_password" class="error"></div>
           </div>
           <div class="col">
             <label for="confirm_password">Xác nhận mật khẩu</label>
             <input type="password" id="confirm_password" name="confirm_password" placeholder="Gõ lại mật khẩu" required />
-            <div id="err_confirm" class="error"></div>
           </div>
         </div>
 
         <label for="phone">Số điện thoại</label>
-        <input type="text" id="phone" name="phone" placeholder="(tuỳ chọn)" />
-        <div id="err_phone" class="error"></div>
+        <input type="text" id="phone" name="phone" placeholder="(tuỳ chọn)" value="<?php echo htmlspecialchars($values["phone"]); ?>" />
 
         <label>Giới tính</label>
         <div class="small">
           <label>
-            <input type="radio" name="gender" value="male" />
+            <input type="radio" name="gender" value="male" <?php echo $values["gender"] === "male" ? "checked" : ""; ?> />
             Nam
           </label>
-      
+
           <label>
-            <input type="radio" name="gender" value="female" />
+            <input type="radio" name="gender" value="female" <?php echo $values["gender"] === "female" ? "checked" : ""; ?> />
             Nữ
           </label>
-     
+
           <label>
-            <input type="radio" name="gender" value="other" />
+            <input type="radio" name="gender" value="other" <?php echo $values["gender"] === "other" ? "checked" : ""; ?> />
             Khác
           </label>
         </div>
@@ -201,17 +270,16 @@
         <label for="country">Quốc gia</label>
         <select id="country" name="country">
           <option value="">-- Chọn --</option>
-          <option value="vn">Việt Nam</option>
-          <option value="us">Hoa Kỳ</option>
-          <option value="jp">Nhật Bản</option>
+          <option value="vn" <?php echo $values["country"] === "vn" ? "selected" : ""; ?>>Việt Nam</option>
+          <option value="us" <?php echo $values["country"] === "us" ? "selected" : ""; ?>>Hoa Kỳ</option>
+          <option value="jp" <?php echo $values["country"] === "jp" ? "selected" : ""; ?>>Nhật Bản</option>
         </select>
 
         <div style="margin-top: 12px">
           <label>
-            <input type="checkbox" id="terms" name="terms" />
+            <input type="checkbox" id="terms" name="terms" required <?php echo $values["terms"] ? "checked" : ""; ?> />
             Tôi đồng ý với điều khoản
           </label>
-          <div id="err_terms" class="error"></div>
         </div>
 
         <div class="actions">
@@ -220,9 +288,8 @@
       </form>
       <div class="small" style="margin-top: 12px">
         Đã có tài khoản?
-        <a href="index.html">Đăng nhập</a>
+        <a href="login.php">Đăng nhập</a>
       </div>
     </div>
-
   </body>
 </html>
