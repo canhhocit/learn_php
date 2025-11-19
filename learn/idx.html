@@ -11,24 +11,17 @@
     <button onclick="add_child()">KẾT QUẢ</button>
     <script>
       function add_child() {
-        //tạo phần tử p
         var p = document.createElement("p");
 
-        //tạo phần tử text
         var node = document.createTextNode("Some new text");
-
-        //gắn node vào p
         p.appendChild(node);
 
-        //Thay đổi một số thuộc tính 
         p.style.backgroundColor = "red";
         p.style.padding = "10px";
         p.style.color = "white";
 
         var div = document.getElementById("demo");
-        //gắn p vào div
         div.appendChild(p);
-       
       }
     </script>
   </body>
