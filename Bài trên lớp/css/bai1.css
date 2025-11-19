@@ -1,0 +1,22 @@
+body {
+  background-color: rgb(241, 229, 229);
+  color: rgb(42, 143, 106);
+}
+p {
+  color: blue;
+}
+h1 {
+  color: goldenrod;
+}
+p#thep{
+    border: 5px solid black;
+    border-radius: 15%;
+    width: 50%;
+    height: 80px;
+    text-align: center;
+    padding-top: 10%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: large;
+    font-style:italic;
+    position: relative;
+}

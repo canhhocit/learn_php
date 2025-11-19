@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #978d8d;
+  padding: 30px;
+}
+
+#tieude {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#bang {
+  margin: auto;
+  border-collapse: collapse;
+  background: rgb(232, 208, 208);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rowname th {
+  background: #d3a15c;
+  color: rgb(53, 47, 47);
+  padding: 12px;
+  font-size: 16px;
+}
+
+#bang td,
+#bang th {
+  border: 1px solid #753838;
+  padding: 10px;
+  text-align: center;
+}
+
+.khoa td {
+  background: #3567a3;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 15px;
+}
+
+.footer td {
+  background: #af8686;
+  font-weight: bold;
+}

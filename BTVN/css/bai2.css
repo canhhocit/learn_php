@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #6b5656;
+  padding: 30px;
+}
+
+#box {
+  width: 450px;
+  margin: 0 auto;
+  background: rgb(213, 202, 202);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+#title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+#desc {
+  text-align: center;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.line {
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.line label {
+  font-size: small;
+  color: #2a97c2;
+}
+.inp {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sel {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.note {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+#btn {
+  width: 100%;
+  padding: 12px;
+  background: #a0af80;
+  border: none;
+  border-radius: 10px;
+  color: rgb(154, 55, 174);
+  font-size: 16px;
+}
