@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lấy và Gán Style bằng JavaScript</title>
+    <style>
+      #text {
+        color: blue;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="text">Đây là đoạn văn bản.</p>
+    <button onclick="getStyle()">📌 Lấy style</button>
+    <button onclick="setStyle()">🎨 Gán style</button>
+    <p id="result"></p>
+  </body>
+  <script>
+    function getStyle() {
+      let element = document.getElementById("text");
+      let style = window.getComputedStyle(element);
+      let color = style.color;
+      let fontSize = style.fontSize;
+      let fontWeight = style.fontWeight;
+      document.getElementById("result").innerHTML = `Màu chữ: ${color} <br> Kích thước chữ: ${fontSize} <br> Độ đậm: ${fontWeight}`;
+    }
+    function setStyle() {
+      let element = document.getElementById("text");
+      element.style.color = "red";
+      element.style.fontSize = "25px";
+      element.style.fontWeight = "normal";
+      element.style.backgroundColor = "yellow";
+    }
+  </script>
+</html>

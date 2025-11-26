@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Element trong JavaScript</title>
+    <style>
+      .highlight {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Xin chào DOM!</h1>
+    <p class="description">Đây là một đoạn văn có class.</p>
+    <p class="description">Đây là đoạn văn thứ hai có cùng class.</p>
+    <button onclick="changeText()">Thay đổi nội dung</button>
+    <ul id="list">
+      <li>Phần tử 1</li>
+      <li>Phần tử 3</li>
+    </ul>
+  </body>
+  <script>
+    let title = document.getElementById("title");
+    title.style.color = "blue";
+    let change = false;
+    let paragraphs = document.getElementsByTagName("p");
+    paragraphs[0].style.fontSize = "20px"; // Thay đổi kích thước chữ đoạn đầu tiên
+    let descriptions = document.getElementsByClassName("description");
+    descriptions[1].style.fontWeight = "bold"; // Làm đậm đoạn thứ hai
+    let firstItem = document.querySelector("#list li"); // truy xuat ptu dau tien
+    firstItem.style.backgroundColor = "yellow";
+    let allItems = document.querySelectorAll("#list li");
+    allItems.forEach((item) => {
+      item.style.margin = "20px";
+    });
+    function changeText() {
+      if (change) {
+        location.reload();
+        change = false;
+      }
+      title.textContent = "Nội dung đã thay đổi!";
+      descriptions[0].classList.add("highlight"); // Thêm class CSS để đổi màu chữ
+      change = true;
+    }
+  </script>
+</html>

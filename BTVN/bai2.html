@@ -40,7 +40,14 @@
   </body>
   <script>
     let btndk = document.getElementById("btn");
-
+    btndk.addEventListener("mouseover", function () {
+      this.style.backgroundColor = "yellow";
+      this.value = "Chưa có php";
+    });
+    btndk.addEventListener("mouseout", function () {
+      this.style.backgroundColor = "#a0af80";
+      this.value = "Đăng ký";
+    });
     btndk.addEventListener("click", function (e) {
       e.preventDefault();
 

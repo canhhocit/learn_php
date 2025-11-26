@@ -1,4 +1,4 @@
-body {
+/* body {
   background-color: rgb(241, 229, 229);
   color: rgb(42, 143, 106);
 }
@@ -19,4 +19,92 @@ p#thep{
     font-size: large;
     font-style:italic;
     position: relative;
+} */
+
+/* POSITION */
+div[class^="box"] {
+  width: 100px;
+  height: 100px;
+  /* margin: 5px; */
+}
+
+/* static
+Được thiết lập mặc định cho mọi phần tử
+Thành phần có position:static sẽ có vị trí xác định theo luồng chuẩn (normal flow) của trang chứa nó
+Thành phần có position:static bỏ qua các giá trị thuộc tính top, bottom, left, right
+ */
+.box1 {
+  background-color: blue;
+}
+.box2 {
+  position: static;
+  background-color: rgb(68, 68, 76);
+}
+/* Relative
+Mô tả: Thành phần với position:relative 
+sẽ di chuyển thành phần đến vị trí mới dựa vào vị trí hiện tại của thành phần này
+ và các giá trị của top, bottom, right, left */
+.box3 {
+  background-color: bisque;
+  position: relative;
+  left: 150px;
+  top: 50px;
+}
+.box4 {
+  background-color: brown;
+}
+
+/* Absolute
+Mô tả: Thành phần với position:absolute sẽ di chuyển tới vị trí tương ứng với thẻ cha của nó.
+ Nếu thành phần không có thẻ cha thì thẻ document <html> sẽ là thẻ cha của nó. */
+.box5 {
+  background-color: rgb(14, 111, 214);
+  position: absolute;
+  left: 150px;
+  top: 50px;
+}
+.box6 {
+  background-color: rgb(12, 203, 82);
+  position: static;
+}
+/* Fixed
+Mô tả: Thành phần với position:fixed sẽ cố định (neo) thành phần theo các giá trị của top, bottom, right, left */
+.box7 {
+  background-color: rgb(61, 239, 11);
+  position: fixed;
+  right: 0;
+  bottom: 10%;
+}
+.box8 {
+  background-color: rgb(92, 115, 100);
+  position: static;
+}
+/* Sticky
+Mô tả: Thành phần với position:sticky
+ sẽ dính lại ở vị trí cố định (khi cuộn trang) nhưng vẫn giữ trong phạm vi phần tử cha. */
+.box9 {
+  background-color: rgb(149, 156, 173);
+  position: sticky;
+  width: 100%;
+  top: 0;
+}
+/* Z-Index
+Mô tả: 
+Sử dụng để điều chỉnh thứ tự hiển thị.
+Z-index càng cao, phần tử càng ở trên
+ */
+.box10 {
+  color: rgb(17, 255, 0);
+  background-color: rgb(35, 34, 33);
+  position: absolute;
+  z-index: 1;
+}
+.bos11 {
+  background-color: rgb(158, 135, 112);
+  position: absolute;
+  color: rgb(145, 19, 173);
+  width: 50px;
+  height: 50px;
+  left: 10%;
+  z-index: 2;
 }
