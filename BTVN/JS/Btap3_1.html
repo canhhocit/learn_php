@@ -16,7 +16,7 @@
         border-radius: 15px;
         font-family: Arial;
         background-color: rgb(142, 118, 147);
-        animation: rotate 0.5s infinite;
+        /* animation: rotate 0.5s infinite; */
       }
 
       input {
@@ -59,21 +59,32 @@
       #message {
         margin-top: 10px;
         font-weight: bold;
-         animation: rotate 0.5s linear infinite;
+      }
+      .trans_sacle_msg{
+        transform: scale(2.5);
+      }
+      .rolate_msg{
+        animation: rotate 0.5s linear infinite;
+      }
+      .rolate_box{
+        animation: rotate 5s linear infinite;
+      }
+      .rolate_btn{
+        animation: rotate 3.5s linear infinite;
       }
       @keyframes rotate {
         from {
           transform: rotate(0deg);
         }
         to {
-          transform: rotate(1080deg);
+          transform: rotate(360deg);
         }
       }
     </style>
   </head>
   <body>
     <div id="box">
-      <h2>Đăng nhập</h2>
+      <marquee behavior="" direction=""> <h2>Đăng nhập</h2></marquee>
       <input type="text" id="username" placeholder="Username" />
       <input type="password" id="password" placeholder="Password" />
 
@@ -89,15 +100,22 @@
           let user = document.getElementById("username").value.trim();
           let pass = document.getElementById("password").value.trim();
           let msg = document.getElementById("message");
+          let box = document.getElementById("box");
+          let btn = document.getElementById("btnLogin");
           msg.style.textAlign = "center";
           if (user === "" || pass === "") {
-            msg.innerText = "Vui lòng nhập đầy đủ username và password!";
+            msg.innerText = "Vui lòng nhập đầy đủ tt";
             msg.style.color = "red";
+             msg.classList.add("rolate_msg");
+             btn.classList.add("rolate_btn");
           } else {
             msg.innerText = "Đăng nhập thành công!";
             msg.style.color = "blue";
+            msg.classList.add("trans_sacle_msg");
+             box.classList.add("rolate_box");
           }
         });
+        fun
     </script>
   </body>
 </html>

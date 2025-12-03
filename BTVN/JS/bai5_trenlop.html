@@ -81,6 +81,9 @@
         align-items: center;
     }
 
+    .trans_scale {
+        transform: scale(2.5);
+    }
 
     .rotate {
         animation: rotate 0.5s linear infinite;
@@ -152,11 +155,20 @@
 
         if (ten === "" || email === "" || tinh === "--Tỉnh--") {
             alert("du lieu k dc trong!");
-            box.classList.add("rotate");
+            desc.classList.add("trans_scale");
+            desc.style.color = "#FF0000";
+            desc.style.fontSize = "30px";
+            desc.style.fontStyle = "italic";
+            desc.innerHTML = "Vui long nhap du thong tin";
+
+            btndk.classList.add("rotate");
             return;
         }
 
-        box.classList.remove("rotate");
+        btndk.classList.remove("rotate");
+        desc.classList.remove("trans_scale");
+        desc.style.color = "#808000";
+        desc.style.fontSize = "16px";
 
         desc.innerHTML = `Ten <b>${ten}</b> - Email: <b>${email}</b> - Tinh: <b>${tinh}</b><br>NOte: ${note}`;
         console.log(
