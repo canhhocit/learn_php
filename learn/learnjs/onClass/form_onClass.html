@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORM DEMO JS</title>
+  </head>
+  <style>
+    form {
+      margin: auto;
+    }
+  </style>
+  <body>
+    <form id="myform" action="">
+      <input type="text" id="name" placeholder="nhap ten cua ban" />
+      <button id="btn" type="submit" style="background-color: a0af80">send</button>
+    </form>
+    <script>
+      document.getElementById("myform").addEventListener("submit", function (e) {
+        let name = document.getElementById("name").value;
+        alert("CHAO: " + name);
+        if (name === "") {
+          alert("vui long nhap du lieu");
+          e.defaultPrevented();
+        }
+      });
+      let btn = document.getElementById("btn");
+      btn.addEventListener("mouseover", function () {
+        this.style.backgroundColor = "yellow";
+      });
+      btn.addEventListener("mouseout", function () {
+        this.style.backgroundColor = "#a0af80";
+      });
+    </script>
+  </body>
+</html>

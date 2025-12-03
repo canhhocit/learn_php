@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      body {
+        background-color: rgb(8, 151, 101);
+      }
+      #box {
+        width: 300px;
+        margin: 100px auto;
+        padding: 20px;
+        border: 2px solid #dfeac9;
+        border-radius: 15px;
+        font-family: Arial;
+        background-color: rgb(142, 118, 147);
+        animation: rotate 0.5s infinite;
+      }
+
+      input {
+        width: 90%;
+        border-radius: 5px;
+        padding: 8px;
+        margin: 7px;
+        transition: 0.3s;
+      }
+      input:focus {
+        border-color: #08e652;
+        transform: scale(1.05);
+      }
+      h2 {
+        text-align: center;
+        color: rgb(54, 69, 144);
+        font-size: 30px;
+        font-style: italic;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      button {
+        font-size: 16px;
+        width: 50%;
+        height: 40px;
+        border-radius: 8px;
+        border: 2px solid chartreuse;
+        background-color: rgb(171, 215, 218);
+        color: #633b71;
+        display: block;
+        margin: 10px auto;
+        cursor: wait;
+        transition: 0.3s;
+      }
+      button:hover {
+        background: #ea1010;
+        color: chartreuse;
+        transform: scale(10);
+      }
+
+      #message {
+        margin-top: 10px;
+        font-weight: bold;
+         animation: rotate 0.5s linear infinite;
+      }
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(1080deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <h2>Đăng nhập</h2>
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+
+      <button id="btnLogin">Đăng nhập</button>
+
+      <div id="message"></div>
+    </div>
+
+    <script>
+      document
+        .getElementById("btnLogin")
+        .addEventListener("click", function () {
+          let user = document.getElementById("username").value.trim();
+          let pass = document.getElementById("password").value.trim();
+          let msg = document.getElementById("message");
+          msg.style.textAlign = "center";
+          if (user === "" || pass === "") {
+            msg.innerText = "Vui lòng nhập đầy đủ username và password!";
+            msg.style.color = "red";
+          } else {
+            msg.innerText = "Đăng nhập thành công!";
+            msg.style.color = "blue";
+          }
+        });
+    </script>
+  </body>
+</html>

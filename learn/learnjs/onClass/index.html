@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>learn JS</title>
+    
+    <style>
+      body {
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+      }
+      #btn {
+        width: 100%;
+      }
+      #box {
+        width: 450px;
+        margin: 0 auto;
+        background: rgb(213, 202, 202);
+        padding: 20px;
+        border-radius: 20px;
+      }
+      .inpNum {
+        margin-bottom: 10px;
+        margin-left: 20%;
+      }
+      #table {
+        margin: auto;
+        border-collapse: collapse;
+        background: rgb(232, 208, 208);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>    
+    <table border="1" id="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Họ tên</th>
+        </tr>
+      </thead>
+
+      <tbody id="table-body"></tbody>
+    </table>
+    <div id="box">
+      <!-- <button id="btn" onclick="add_child()">ADD CHILD</button>
+      <div id="demo"></div> -->
+      <input type="number" class="inpNum" id="num" name="sothunhat" placeholder="nhap so" />
+      <button id="btn" onclick="insole()" onmouseover="changecolor()">SHOW NUMBER</button>
+      <div id="so"></div>
+    </div>
+    <script lang="javascript" src="./js/demo1.js"></script>
+  </body>
+</html>

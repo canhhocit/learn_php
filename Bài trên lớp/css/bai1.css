@@ -108,3 +108,16 @@ Z-index càng cao, phần tử càng ở trên
   left: 10%;
   z-index: 2;
 }
+/*learn fb*/
+.box3:hover {
+  transform: rotateZ(30deg);
+}
+.box6 {
+  transform: rotate(25deg);
+}
+.box5 {
+  transform: rotate3d(1, 1, 0, 45deg);
+}
+.box7{
+  animation: rote 3s ;
+}

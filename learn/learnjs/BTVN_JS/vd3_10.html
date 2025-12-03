@@ -5,11 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOM Element trong JavaScript</title>
     <style>
-      .highlight {
-        color: red;
-        font-weight: bold;
-      }
-    </style>
+  body {
+    background: #f5f5f5;
+    color: #333;
+    padding: 20px;
+    font-family: sans-serif;
+  }
+
+  h1 {
+    text-align: center;
+    color: #0077cc;
+  }
+
+  h1.highlight {
+    color: red;
+  }
+
+  p.description {
+    background: #fff;
+    padding: 10px;
+    border-left: 4px solid #0077cc;
+    margin-bottom: 10px;
+  }
+
+  .highlight {
+    color: red;
+    font-weight: bold;
+    border-left-color: red;
+  }
+
+  button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: #0077cc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+
+  ul#list {
+    list-style: none;
+  }
+
+  ul#list li {
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 6px;
+  }
+</style>
+
   </head>
   <body>
     <h1 id="title">Xin chào DOM!</h1>
@@ -17,8 +63,8 @@
     <p class="description">Đây là đoạn văn thứ hai có cùng class.</p>
     <button onclick="changeText()">Thay đổi nội dung</button>
     <ul id="list">
-      <li>Phần tử 1</li>
-      <li>Phần tử 3</li>
+      <li id="li1">Phần tử 1</li>
+      <li id="li2">Phần tử 3</li>
     </ul>
   </body>
   <script>

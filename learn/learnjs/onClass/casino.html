@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASINO</title>
+</head>
+<style>
+   body {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    font-family: Arial, sans-serif;
+}
+
+#box {
+    width: 400px;
+    margin: 80px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.input {
+    width: 100%;
+    height: 40px;
+    background-color: #f3f7ff;
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+    border: 2px solid #cbd6ff;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.input:focus {
+    border-color: #6a8dff;
+    background-color: white;
+    transform: scale(1.03);
+    outline: none;
+}
+
+.inp_cacul {
+    width: 60px;
+    height: 40px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-size: 22px;
+    border: 2px solid #cbd6ff;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.inp_cacul:focus {
+    border-color: #6a8dff;
+    transform: scale(1.05);
+}
+
+#btn {
+    width: 120px;
+    height: 40px;
+    display: block;
+    margin: 20px auto 0 auto;
+    border-radius: 12px;
+    background: #6a8dff;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor:wait;
+    transition: 0.3s;
+}
+
+#btn:hover {
+    background: #526dff;
+    transform: scale(1.5);
+}
+
+#ketqua {
+    text-align: center;
+    font-size: 26px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 20px;
+}
+</style>
+
+<body>
+    <div id="box">
+        <div id="inp_number">
+            <input type="number" class="input" id="so_a" placeholder="nhap so thu nhat">
+        </div>
+        <div id="inp_number">
+            <input type="number" class="input" id="so_b" placeholder="nhap so thu hai">
+        </div>
+
+        <input type="text" class="inp_cacul" id="pheptoan" placeholder="+ - * /">
+        <br>
+
+        <input type="button" id="btn" value="Tính" onclick="tinhToan()">
+
+        <h2 id="ketqua" style="text-align:center; color:black; margin-top:20px;"></h2>
+    </div>
+
+    <script>
+        function tinhToan(){
+            let a = parseFloat(document.getElementById("so_a").value);
+            let b = parseFloat(document.getElementById("so_b").value);
+            let op = document.getElementById("pheptoan").value.trim();
+
+            let kq;
+
+            if(op === "+") kq = a + b;
+            else if(op === "-") kq = a - b;
+            else if(op === "*") kq = a * b;
+            else if(op === "/") {
+                if(b === 0) kq = "Không thể chia 0";
+                else kq = a / b;
+            }
+            else kq = "Phép toán không hợp lệ";
+
+            document.getElementById("ketqua").innerText = "Kết quả: " + kq;
+        }
+    </script>
+</body>
+</html>

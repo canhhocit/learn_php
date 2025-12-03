@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03/12</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #6b5656;
+        padding: 30px;
+    }
+
+    #box {
+        width: 450px;
+        margin: 0 auto;
+        background: rgb(213, 202, 202);
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    #title {
+        text-align: center;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    #desc {
+        text-align: center;
+        color: #777;
+        margin-bottom: 20px;
+    }
+
+    .line {
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .line label {
+        font-size: small;
+        color: #2a97c2;
+    }
+
+    .inp {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px;
+    }
+
+    .sel {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .note {
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        height: 100px;
+        margin-bottom: 15px;
+    }
+
+    #btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        color: rgb(88, 15, 171);
+        text-align: left;
+        font-size: 25px;
+        letter-spacing: 5px;
+        background: url("https://th.bing.com/th?id=OIF.zbkxNiinzgGigjaAk%2bAkXA&w=308&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3") center/cover no-repeat;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .rotate {
+        animation: rotate 0.5s linear infinite;
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(1080deg);
+        }
+    }
+</style>
+
+<body>
+    <div id="box">
+        <marquee behavior="" direction="">
+            <h1 id="title">Đăng ký tài khoản!</h1>
+        </marquee>
+
+        <p id="desc">Nhập thông tin đăng ký</p>
+
+        <form id="form">
+            <div class="line">
+                <input type="text" id="ten" class="inp" placeholder="Ho ten" />
+                <input type="text" id="email" class="inp" placeholder="Email" />
+            </div>
+
+            <div class="line">
+                <label for="tinh">Chọn tỉnh</label>
+                <select id="tinh" class="sel">
+                    <option disabled selected>--Tỉnh--</option>
+                    <option>Hà Nội</option>
+                    <option>Nam Định</option>
+                    <option>Ninh Bình</option>
+                </select>
+            </div>
+
+            <textarea id="note" class="note" rows="5" placeholder="Ghi chú..."></textarea>
+
+            <button id="btn" type="button" onclick="getInfor()">
+                <b id="left">Regi</b>
+                <b id="right">ster</b>
+            </button>
+
+            </button>
+        </form>
+    </div>
+</body>
+<script>
+    let btndk = document.getElementById("btn");
+    btndk.addEventListener("mouseover", function () {
+        this.style.backgroundColor = "yellow";
+        this.value = "Chưa có php";
+    });
+    btndk.addEventListener("mouseout", function () {
+        this.style.backgroundColor = "#a0af80";
+        this.value = "Đăng ký";
+    });
+    function getInfor() {
+        let ten = document.getElementById("ten").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let tinh = document.getElementById("tinh").value;
+        let note = document.getElementById("note").value.trim();
+        let desc = document.getElementById("desc");
+        let box = document.getElementById("box");
+
+        if (ten === "" || email === "" || tinh === "--Tỉnh--") {
+            alert("du lieu k dc trong!");
+            box.classList.add("rotate");
+            return;
+        }
+
+        box.classList.remove("rotate");
+
+        desc.innerHTML = `Ten <b>${ten}</b> - Email: <b>${email}</b> - Tinh: <b>${tinh}</b><br>NOte: ${note}`;
+        console.log(
+            `Ten ${ten} \n Email: ${email} \n Tinh: ${tinh} \nNOte: ${note}`
+        );
+        alert("Đăng ký thành công!");
+    }
+</script>
+
+</html>
