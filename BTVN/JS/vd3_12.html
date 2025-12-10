@@ -36,8 +36,8 @@
   <body>
     <div class="box">
       <p id="text">Đây là đoạn văn bản.</p>
-      <button onclick="Box();getStyle()">Lấy style</button>
-      <button onclick="Box();setStyle()">Gán style</button>
+      <button onclick="getStyle()">Lấy style</button>
+      <button onclick="setStyle()">Gán style</button>
       <p id="result"></p>
     </div>
   </body>
@@ -60,10 +60,6 @@
       element.style.backgroundColor = "blue";
     }
 
-     function Box() {
-      let box = document.getElementsByClassName("box")[0];
-      let angle = Math.floor(Math.random() * 720 - 360);
-      box.style.transform = `rotate(${angle}deg)`;
-    }
+     
   </script>
 </html>

@@ -60,16 +60,16 @@
         margin-top: 10px;
         font-weight: bold;
       }
-      .trans_sacle_msg{
+      .trans_sacle_msg {
         transform: scale(2.5);
       }
-      .rolate_msg{
+      .rolate_msg {
         animation: rotate 0.5s linear infinite;
       }
-      .rolate_box{
+      .rolate_box {
         animation: rotate 5s linear infinite;
       }
-      .rolate_btn{
+      .rolate_btn {
         animation: rotate 3.5s linear infinite;
       }
       @keyframes rotate {
@@ -106,16 +106,16 @@
           if (user === "" || pass === "") {
             msg.innerText = "Vui lòng nhập đầy đủ tt";
             msg.style.color = "red";
-             msg.classList.add("rolate_msg");
-             btn.classList.add("rolate_btn");
+            msg.classList.add("rolate_msg");
+            btn.classList.add("rolate_btn");
           } else {
             msg.innerText = "Đăng nhập thành công!";
             msg.style.color = "blue";
             msg.classList.add("trans_sacle_msg");
-             box.classList.add("rolate_box");
+            box.classList.add("rolate_box");
           }
         });
-        fun
+      fun;
     </script>
   </body>
 </html>

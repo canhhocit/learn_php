@@ -72,9 +72,9 @@
     title.style.color = "blue";
     let change = false;
     let paragraphs = document.getElementsByTagName("p");
-    paragraphs[0].style.fontSize = "20px"; // Thay đổi kích thước chữ đoạn đầu tiên
+    paragraphs[0].style.fontSize = "20px";
     let descriptions = document.getElementsByClassName("description");
-    descriptions[1].style.fontWeight = "bold"; // Làm đậm đoạn thứ hai
+    descriptions[1].style.fontWeight = "bold"; // dd hai
     let firstItem = document.querySelector("#list li"); // truy xuat ptu dau tien
     firstItem.style.backgroundColor = "yellow";
     let allItems = document.querySelectorAll("#list li");
@@ -87,7 +87,7 @@
         change = false;
       }
       title.textContent = "Nội dung đã thay đổi!";
-      descriptions[0].classList.add("highlight"); // Thêm class CSS để đổi màu chữ
+      descriptions[0].classList.add("highlight"); 
       change = true;
     }
   </script>
