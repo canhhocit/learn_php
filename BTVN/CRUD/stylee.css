@@ -1,0 +1,65 @@
+.input_search {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px;
+}
+
+#inp_txt {
+    border-radius: 8px;
+}
+
+#btn-find {
+    padding: 8px;
+    background: #393422;
+    border-radius: 8px;
+    cursor: pointer;
+}
+#btn-find:hover {
+    transform:scale(10);
+}
+
+table{
+    border-collapse: collapse;
+    width: 80%;
+   
+}
+table th{
+    background-color:#CC3333 ;
+    color: #CCCCCC;
+    font-size: 20px;
+}
+table th, td{
+      border: 2px solid #563636;
+       text-align: center;
+}
+table tbody tr:hover {
+    background-color: #fcc8ef;
+    color: rgb(27, 27, 56);
+    transform: scale(1.1);
+    cursor: no-drop;
+}
+
+.text {
+    color: rgb(235, 231, 237);
+    font-weight: bold;
+}
+
+
+
+
+
+
+.run {
+    animation: rotate 0.5s linear infinite; 
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
